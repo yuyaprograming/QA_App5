@@ -67,6 +67,14 @@ class QuestionDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_detail)
 
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            fabbutton.setVisibility(View.VISIBLE)
+        } else {
+            fabbutton.setVisibility(View.INVISIBLE)
+        }
+
         // 渡ってきたQuestionのオブジェクトを保持する
         val extras = intent.extras
         mQuestion = extras.get("question") as Question
